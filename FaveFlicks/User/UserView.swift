@@ -33,8 +33,27 @@
 import SwiftUI
 
 struct UserView: View {
+  @State private var userName = ""
+  
   var body: some View {
-    Text("Watch this space!")
+    NavigationView {
+      Form {
+        Section(header: Text("User")) {
+          TextField("User Name", text: $userName)
+        }
+      }
+      .navigationBarTitle(Text("\(userName) Info"), displayMode: .inline)
+      .navigationBarItems(
+        trailing:
+          Button(action: updateUserInfo) {
+            Text("Update")
+          }
+      )
+    }
+  }
+  
+  func updateUserInfo() {
+    
   }
 }
 
