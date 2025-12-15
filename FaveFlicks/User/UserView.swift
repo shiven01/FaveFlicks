@@ -34,12 +34,16 @@ import SwiftUI
 
 struct UserView: View {
   @State private var userName = ""
+  @State private var favoriteGenre = ""
   
   var body: some View {
     NavigationView {
       Form {
         Section(header: Text("User")) {
           TextField("User Name", text: $userName)
+        }
+        Section(header: Text("Favorite Genre")) {
+          GenrePicker(genre: $favoriteGenre)
         }
       }
       .navigationBarTitle(Text("\(userName) Info"), displayMode: .inline)
