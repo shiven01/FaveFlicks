@@ -33,6 +33,7 @@
 import SwiftUI
 
 struct UserView: View {
+  @EnvironmentObject var userStore: UserStore
   @State private var userName = ""
   @State private var favoriteGenre = ""
   
@@ -54,10 +55,15 @@ struct UserView: View {
           }
       )
     }
+    .onAppear {
+      userName = userStore.currentUserInfo?.userName ?? ""
+      favoriteGenre = userStore.currentUserInfo?.favoriteGenre ?? ""
+    }
   }
   
   func updateUserInfo() {
-    
+    let newUserInfo = UserInfo(userName: userName, favoriteGenre: favoriteGenre)
+    userStore.currentUserInfo = newUserInfo
   }
 }
 
